@@ -4,6 +4,7 @@ import staticify from '@andrewsantarin/staticify';
 import morgan from 'morgan';
 
 import { dev, env, port, url } from './env';
+import posts from './posts.json';
 
 const DEV = dev()
 const ENV = env();
@@ -28,8 +29,10 @@ app.use('/static', staticified.middleware);
 app.locals = { staticPath: staticified.getVersionedPath };
 
 const renderIndex: RequestHandler = (req, res) => res.render('index');;
+const getPosts: RequestHandler = (req, res) => res.json(posts);
 
 app.get('/', renderIndex);
+app.get('/posts', getPosts);
 
 const server = app.listen(PORT);
 server.on('listening', () => {
