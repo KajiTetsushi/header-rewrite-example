@@ -3,14 +3,14 @@ import express, { RequestHandler } from 'express';
 import staticify from '@andrewsantarin/staticify';
 import morgan from 'morgan';
 
-import { dev, env, port, url, baseUrl } from './env';
+import { dev, env, port, url, directory } from './env';
 import posts from './posts.json';
 
 const DEV = dev()
 const ENV = env();
 const PORT = port();
 const URL = url(PORT);
-const BASE_URL = baseUrl();
+const DIRECTORY = directory();
 
 const app = express();
 
@@ -27,7 +27,10 @@ app.use((req, res, next) => {
 });
 
 app.use('/static', staticified.middleware);
-app.locals = { staticPath: staticified.getVersionedPath };
+app.locals = {
+  staticPath: staticified.getVersionedPath,
+  directory: directory,
+};
 
 const logUrls = (requestHandler: RequestHandler): RequestHandler => (req, res, next) => {
   const {
@@ -44,7 +47,7 @@ const logUrls = (requestHandler: RequestHandler): RequestHandler => (req, res, n
   }, null, 2));
 
   return requestHandler(req, res, next);
-}
+};
 
 const renderIndex: RequestHandler = logUrls((req, res) => res.render('index'));
 const getPosts: RequestHandler = logUrls((req, res) => res.json(posts));
@@ -52,10 +55,7 @@ const getPosts: RequestHandler = logUrls((req, res) => res.json(posts));
 app.get('/', renderIndex);
 app.get('/posts', getPosts);
 
-const context = express();
-context.use(BASE_URL, app);
-
-const server = context.listen(PORT);
+const server = app.listen(PORT);
 server.on('listening', () => {
   console.log('');
   console.log('-----------------------');

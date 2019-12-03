@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
+
+import { selectData } from '~lib/fetch';
+import { api } from './api';
 
 export type Post = Partial<{
   userId: number;
@@ -8,7 +10,6 @@ export type Post = Partial<{
   body: string;
 }>;
 
-export const selectPosts = (response: AxiosResponse<Post[]>) => response.data;
 export const postsUrl = '/posts';
 
 export const Posts = () => {
@@ -17,7 +18,7 @@ export const Posts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       setFetching(true);
-      const posts = await axios.get<Post[]>(postsUrl).then(selectPosts);
+      const posts = await api.get<Post[]>(postsUrl).then(selectData);
       setPosts(posts);
       setFetching(false);
     };
