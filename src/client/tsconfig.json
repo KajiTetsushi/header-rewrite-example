@@ -26,7 +26,6 @@
   },
   "include": [
     "../../types/**/*",
-    "../../env.ts",
     "./**/*",
     "scripts.tsx"
   ]

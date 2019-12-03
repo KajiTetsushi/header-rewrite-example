@@ -3,7 +3,7 @@ import express, { RequestHandler } from 'express';
 import staticify from '@andrewsantarin/staticify';
 import morgan from 'morgan';
 
-import { dev, env, port, url, directory } from './env';
+import { dev, env, port, url } from './env';
 import posts from './posts.json';
 
 const DEV = dev()
@@ -26,10 +26,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/static', staticified.middleware);
-app.locals = {
-  staticPath: staticified.getVersionedPath,
-  directory: directory,
-};
+app.locals = { staticPath: staticified.getVersionedPath };
 
 const logUrls = (requestHandler: RequestHandler): RequestHandler => (req, res, next) => {
   const {
@@ -51,7 +48,7 @@ const logUrls = (requestHandler: RequestHandler): RequestHandler => (req, res, n
 const renderIndex: RequestHandler = logUrls((req, res) => res.render('index'));
 const renderMe: RequestHandler = logUrls((req, res) => res.render('me'));
 const getPosts: RequestHandler = logUrls((req, res) => res.json(posts));
-const redirectMe: RequestHandler = logUrls((req, res) => res.redirect(directory('/me')))
+const redirectMe: RequestHandler = logUrls((req, res) => res.redirect('/me'));
 
 app.get('/', renderIndex);
 app.get('/me', renderMe);
