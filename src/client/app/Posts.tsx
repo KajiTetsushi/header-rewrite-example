@@ -9,7 +9,7 @@ export type Post = Partial<{
 }>;
 
 export const selectPosts = (response: AxiosResponse<Post[]>) => response.data;
-export const postsUrl = 'https://jsonplaceholder.typicode.com/posts';
+export const postsUrl = '/posts';
 
 export const Posts = () => {
   const [ fetching, setFetching ] = useState(false);
