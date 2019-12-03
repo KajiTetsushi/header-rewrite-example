@@ -10,7 +10,6 @@ const DEV = dev()
 const ENV = env();
 const PORT = port();
 const URL = url(PORT);
-const DIRECTORY = directory();
 
 const app = express();
 
@@ -50,10 +49,14 @@ const logUrls = (requestHandler: RequestHandler): RequestHandler => (req, res, n
 };
 
 const renderIndex: RequestHandler = logUrls((req, res) => res.render('index'));
+const renderMe: RequestHandler = logUrls((req, res) => res.render('me'));
 const getPosts: RequestHandler = logUrls((req, res) => res.json(posts));
+const redirectMe: RequestHandler = logUrls((req, res) => res.redirect(directory('/me')))
 
 app.get('/', renderIndex);
+app.get('/me', renderMe);
 app.get('/posts', getPosts);
+app.get('/redirector', redirectMe);
 
 const server = app.listen(PORT);
 server.on('listening', () => {

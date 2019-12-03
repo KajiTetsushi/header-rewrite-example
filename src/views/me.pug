@@ -1,0 +1,20 @@
+include partials/statics
+include partials/client-statics
+
+doctype html
+html(lang='en' ontouchstart)
+  head
+    title Staticify Test
+    +clientStyles
+    +styles('/styles/landing.css')
+
+  body
+    main(role='main')
+      h1 Staticify Test /me
+      p Hello! Welcome to kajitetsushi.dev!
+      p If you can see a list of Posts, then your setup is working.
+
+      section(role='section')
+        article(role='article')
+          +clientApp
+    +clientScripts
