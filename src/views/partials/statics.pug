@@ -1,5 +1,8 @@
 mixin styles(href='')
-  link(rel='stylesheet' type='text/css' href=directory(staticPath(href)))
+  link(rel='stylesheet' type='text/css' href=directory(staticPath(href)))&attributes(attributes)
 
 mixin scripts(src='')
-  script(type='text/javascript' src=directory(staticPath(src)))
+  script(type='text/javascript' src=directory(staticPath(src)))&attributes(attributes)
+
+mixin img(src='')
+  img(src=directory(staticPath(src)))&attributes(attributes)
