@@ -3,13 +3,14 @@ import express, { RequestHandler } from 'express';
 import staticify from '@andrewsantarin/staticify';
 import morgan from 'morgan';
 
-import { dev, env, port, url, base } from './env';
+import { dev, env, port, url, baseUrl } from './env';
 import posts from './posts.json';
 
 const DEV = dev()
 const ENV = env();
 const PORT = port();
 const URL = url(PORT);
+const BASE_URL = baseUrl();
 
 const app = express();
 
@@ -52,7 +53,7 @@ app.get('/', renderIndex);
 app.get('/posts', getPosts);
 
 const context = express();
-context.use(base(), app);
+context.use(BASE_URL, app);
 
 const server = context.listen(PORT);
 server.on('listening', () => {
