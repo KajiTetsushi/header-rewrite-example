@@ -9,3 +9,5 @@ export const dev = () => env() === 'development';
 export const port = () => Number(process.env.PORT) || 8080;
 
 export const url = (port: number) => `http://localhost:${port}`;
+
+export const base = () => process.env.BASE_URL || '/';
