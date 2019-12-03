@@ -1,5 +1,3 @@
-import { directory } from '~../env';
+import dotenv from 'dotenv';
 
-export const APP_BASE_URL = directory();
-
-export { directory };
+export const prefixed = (url: string = '') => `${process.env.DIRECTORY || ''}${url}`;
