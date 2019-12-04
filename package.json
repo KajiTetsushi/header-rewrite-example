@@ -48,7 +48,7 @@
     "watch-public": "nodemon --watch src/public -e jpg,png,ico,js,pug --exec yarn build-public",
     "build-public": "ts-node scripts/build-public",
     "open-browser": "ts-node scripts/open-browser",
-    "build": "yarn build-server && yarn build-client && yarn build-public",
+    "build": "yarn clean && yarn build-server && yarn build-client && yarn build-public",
     "clean": "rimraf dist .cache .parcel-cache",
     "debug": "cross-env NODE_ENV=development yarn clean && yarn watch",
     "start": "cross-env NODE_ENV=production node .",
