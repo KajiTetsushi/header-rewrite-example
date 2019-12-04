@@ -19,7 +19,7 @@ export const Posts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       setFetching(true);
-      const posts = await api.get<Post[]>(postsUrl).then(selectData);
+      const posts = await api.get<Post[]>('/').then(selectData);
       setPosts(posts);
       setFetching(false);
     };
