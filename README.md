@@ -1,8 +1,20 @@
-# staticify-test
+# header-rewrite-example
 
-Testing [`staticify`](https://npmjs.org/packages/staticify) with TypeScript.
+This example demonstrates how to serve a Node app under a designated subroute under a main domain site using Nginx as a proxy.
 
-This example uses a particular version of `staticify` ([`@andrewsantarin/staticify`](https://npmjs.org/packages/@andrewsantarinstaticify)) and is under evaluation from the author of this example.
+Example:
+
+www.kajtetsushi.dev
+
+- [`/app`](www.kajtetsushi.dev/app)
+
+  You are reading the manual for this route.
+
+- [`/hello`](www.kajtetsushi.dev/hello)
+
+  See [the Hello instructions](hello/README.md) on how to implement this subroute.
+
+--------
 
 - [Tech](#tech)
 - [System Requirements](#system-requirements)
@@ -14,6 +26,7 @@ This example uses a particular version of `staticify` ([`@andrewsantarin/statici
 - [Running Locally](#running-locally)
   - [Development Mode](#development-mode)
   - [Production Mode](#production-mode)
+- [Application Deployment](#application-deployment)
 - [To-Do](#to-do)
 
 ## Tech
@@ -32,8 +45,10 @@ This example uses a particular version of `staticify` ([`@andrewsantarin/statici
 
 ## System Requirements
 
+- Nginx v1.x++
 - Node v10.x++
 - Yarn v1.x++
+- PM2 v4.x++
 - _(optional)_ Git v2.x++
   - used for cloning the repository.
   - will not be used if you choose to download the repository instead.
@@ -42,7 +57,7 @@ This example uses a particular version of `staticify` ([`@andrewsantarin/statici
 
 ### 1. Install all system required tools
 
-See [System Requirements](#system-requirements) for what you need to get.
+See [System Requirements](#system-requirements) for what you need to get. For Nginx & Node & PM2, try [DigitalOcean's tutorial](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04).
 
 ### 2. Get a copy of the code
 
@@ -80,10 +95,28 @@ With the help of TS-Node-Dev, the server runs on the TypeScript code. This compi
 ### Production Mode
 
 ```sh
-yarn build && yarn start
+yarn build
 ```
 
 Compiles all TSX & SCSS code in [`/src`](./src) to JS & CSS and outputs them into [`/dist`](./dist).
+
+```sh
+yarn start
+```
+
+```sh
+pm2 start npm --name "header rewrite example" -- start
+```
+
+Serves the application on your local machine. Using `yarn` means you need to keep your terminal session locked & running. Using `pm2` means daemonizing the app so that you can continue working on the current terminal.
+
+## Application Deployment
+
+1. Repeat the steps in [Project Setup](#project-setup).
+2. Copy the code in [`./nginx/nginx.conf`] to your instance configuration of this particular project.
+3. Run the `yarn build` command as desribed in [Running Locally > Production Mode](#production-mode).
+4. Run the server with `yarn` or `pm2`.
+5. _(optional)_ Do the same for `hello.js`: [Instructions](hello/README.md).
 
 ## To-Do
 
