@@ -3,7 +3,7 @@ import { AxiosRequestConfig } from 'axios';
 import { HttpClient } from '~lib/fetch';
 
 export const apiConfig = Object.freeze<AxiosRequestConfig>({
-  baseURL: '/api/v1',
+  baseURL: '/',
 });
 
 export const Api = (baseURL: string = '') => HttpClient({
