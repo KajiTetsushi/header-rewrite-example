@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { selectData } from '~lib/fetch';
-import { api } from './api';
+import { Api } from './Api';
 
 export type Post = Partial<{
   userId: number;
@@ -11,6 +11,7 @@ export type Post = Partial<{
 }>;
 
 export const postsUrl = '/posts';
+export const api = Api(postsUrl);
 
 export const Posts = () => {
   const [ fetching, setFetching ] = useState(false);
