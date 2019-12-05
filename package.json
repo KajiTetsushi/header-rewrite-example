@@ -18,13 +18,15 @@
     "morgan": "^1.9.1",
     "pug": "^2.0.4",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "@types/morgan": "^1.7.37",
     "@types/node": "^12.12.14",
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
+    "@types/react-router-dom": "^5.1.3",
     "@types/send": "^0.14.5",
     "@types/shelljs": "^0.8.6",
     "@types/wait-on": "^3.2.0",
