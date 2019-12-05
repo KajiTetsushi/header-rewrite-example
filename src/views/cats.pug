@@ -16,12 +16,12 @@ block main
     const staticPathCats = cats.map(staticPath);
 
   h1 Staticify Test /cats
-  p If you can see a list of Cats whose URLs are also logged in the console, then your setup is working.
+  p If you can see two lists of Cats whose URLs are also logged in the console, then your setup is working.
   p Link back to self:
     | #{' '}
     a(href='/') /
   div
-    h2 Cats
+    h2 Cats (Pug render)
     ul
       each cat in cats
         li.cat

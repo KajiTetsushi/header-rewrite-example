@@ -5,6 +5,7 @@ import morgan from 'morgan';
 
 import { dev, env, port, url } from './env';
 import posts from './posts.json';
+import cats from './cats.json';
 
 const DEV = dev()
 const ENV = env();
@@ -45,15 +46,25 @@ const logUrls = (requestHandler: RequestHandler): RequestHandler => (req, res, n
   return requestHandler(req, res, next);
 };
 
+const getCats: RequestHandler = logUrls((_, res) => res.json(cats));
+const getPosts: RequestHandler = logUrls((_, res) => res.json(posts));
 const renderIndex: RequestHandler = logUrls((_, res) => res.render('index'));
 const renderCats: RequestHandler = logUrls((_, res) => res.render('cats'));
 const renderExample: RequestHandler = logUrls((_, res) => res.render('example'));
 const renderMe: RequestHandler = logUrls((_, res) => res.render('me'));
 const redirectMe: RequestHandler = logUrls((_, res) => res.redirect('/me'));
-const getPosts: RequestHandler = logUrls((_, res) => res.json(posts));
+const catsController: RequestHandler = (req, res, next) => {
+  const { type } = req.query as { type?: 'xhr' };
+
+  if (req.xhr || type === 'xhr') {
+    return getCats(req, res, next);
+  } else {
+    return renderCats(req, res, next);
+  }
+};
 
 app.get('/', renderIndex);
-app.get('/cats', renderCats);
+app.get('/cats', catsController);
 app.get('/example', renderExample);
 app.get('/me', renderMe);
 app.get('/posts', getPosts);
