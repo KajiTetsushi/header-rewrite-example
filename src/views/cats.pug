@@ -1,0 +1,33 @@
+extends partials/layout
+include partials/statics
+
+block head
+  +styles('/styles/cats.css')
+
+block main
+  -
+    const cats = [
+      '/images/arthur-the-cat-by-mercy.jpg',
+      '/images/arthur-the-cat-by-mercy.jpg',
+      '/images/arthur-the-cat-by-mercy.jpg',
+      '/images/arthur-the-cat-by-mercy.jpg',
+      '/images/arthur-the-cat-by-mercy.jpg',
+    ];
+    const staticPathCats = cats.map(staticPath);
+
+  h1 Staticify Test /cats
+  p If you can see a list of Cats whose URLs are also logged in the console, then your setup is working.
+  p Link back to self:
+    | #{' '}
+    a(href='/') /
+  div
+    h2 Cats
+    ul
+      each cat in cats
+        li.cat
+          +img(cat)(alt='Arthur the Cat')
+
+block scripts
+  script(type='text/javascript').
+    var cats = !{JSON.stringify(staticPathCats)};
+    console.log(cats);

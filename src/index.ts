@@ -46,12 +46,14 @@ const logUrls = (requestHandler: RequestHandler): RequestHandler => (req, res, n
 };
 
 const renderIndex: RequestHandler = logUrls((_, res) => res.render('index'));
+const renderCats: RequestHandler = logUrls((_, res) => res.render('cats'));
 const renderExample: RequestHandler = logUrls((_, res) => res.render('example'));
 const renderMe: RequestHandler = logUrls((_, res) => res.render('me'));
 const redirectMe: RequestHandler = logUrls((_, res) => res.redirect('/me'));
 const getPosts: RequestHandler = logUrls((_, res) => res.json(posts));
 
 app.get('/', renderIndex);
+app.get('/cats', renderCats);
 app.get('/example', renderExample);
 app.get('/me', renderMe);
 app.get('/posts', getPosts);
