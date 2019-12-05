@@ -1,0 +1,18 @@
+extends partials/layout
+include partials/statics
+
+block head
+  +styles('/styles/example.css')
+
+block main
+  h1 Staticify Test /example
+  p If you can see an Example segment, a list of Posts, then your setup is working.
+  p Link back to self:
+    | #{' '}
+    a(href='/') /
+  p#example CSS that only works for /example.
+  div#text Click the button to change this text
+  button#button Change Text
+
+block scripts
+  +scripts('/scripts/example.js')

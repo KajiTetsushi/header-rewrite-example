@@ -45,12 +45,14 @@ const logUrls = (requestHandler: RequestHandler): RequestHandler => (req, res, n
   return requestHandler(req, res, next);
 };
 
-const renderIndex: RequestHandler = logUrls((req, res) => res.render('index'));
-const renderMe: RequestHandler = logUrls((req, res) => res.render('me'));
-const getPosts: RequestHandler = logUrls((req, res) => res.json(posts));
-const redirectMe: RequestHandler = logUrls((req, res) => res.redirect('/me'));
+const renderIndex: RequestHandler = logUrls((_, res) => res.render('index'));
+const renderExample: RequestHandler = logUrls((_, res) => res.render('example'));
+const renderMe: RequestHandler = logUrls((_, res) => res.render('me'));
+const redirectMe: RequestHandler = logUrls((_, res) => res.redirect('/me'));
+const getPosts: RequestHandler = logUrls((_, res) => res.json(posts));
 
 app.get('/', renderIndex);
+app.get('/example', renderExample);
 app.get('/me', renderMe);
 app.get('/posts', getPosts);
 app.get('/redirector', redirectMe);

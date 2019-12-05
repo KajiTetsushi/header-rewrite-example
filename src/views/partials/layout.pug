@@ -1,0 +1,18 @@
+include statics
+include client-statics
+
+doctype html
+html(lang='en' ontouchstart)
+  head
+    title Staticify Test
+    +clientStyles
+    block head
+
+  body
+    main(role='main')
+      block main
+      section(role='section')
+        article(role='article')
+          +clientApp
+    +clientScripts
+    block scripts

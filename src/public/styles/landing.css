@@ -5,3 +5,8 @@
 #cat figcaption {
   font-weight: 400;
 }
+
+#landing {
+  background-color: red;
+  color: white;
+}

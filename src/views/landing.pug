@@ -1,0 +1,30 @@
+extends partials/layout
+include partials/statics
+
+block head
+  +styles('/styles/landing.css')
+
+block main
+  h1 Staticify Test
+  p If you can see a Cat, a Landing segment, a list of Posts, a console log which says 'exec', then your setup is working.
+  p Try out my redirector:
+    | #{' '}
+    a(href='/redirector') /redirector
+  p Visit my example:
+    | #{' '}
+    a(href='/example') /example
+
+  section(role='section')
+    article(role='article')
+      h2 Cat
+        figure#cat
+          +img('/images/arthur-the-cat-by-mercy.jpg')(alt='Arthur the Cat')#cat
+          figcaption
+            a(href='https://commons.wikimedia.org/wiki/File:Arthur,_the_cat.jpg')
+              i Arthur, the cat
+            | #{' © '}
+            a(href='https://commons.wikimedia.org/wiki/User:Mercy') Mercy
+            | #{' 2007 - present'}
+
+block scripts
+  +scripts('/scripts/landing.js')

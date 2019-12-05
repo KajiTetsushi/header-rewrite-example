@@ -1,22 +1,17 @@
+extends partials/layout
 include partials/statics
-include partials/client-statics
 
-doctype html
-html(lang='en' ontouchstart)
-  head
-    title Staticify Test
-    +clientStyles
-    +styles('/styles/landing.css')
+block head
+  +styles('/styles/me.css')
 
-  body
-    main(role='main')
-      h1 Staticify Test /me
-      p If you can see a list of Posts, then your setup is working.
-      p Link back to self:
-        | #{' '}
-        a(href='/') /
+block main
+  h1 Staticify Test /me
+  p If you can see a Me segment, a list of Posts, then your setup is working.
+  p Link back to self:
+    | #{' '}
+    a(href='/') /
+  p#me CSS that only works for /me.
+  div#text
 
-      section(role='section')
-        article(role='article')
-          +clientApp
-    +clientScripts
+block scripts
+  +scripts('/scripts/me.js')
