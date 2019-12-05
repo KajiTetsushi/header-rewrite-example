@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 
 import { HttpClient } from '~lib/fetch';
 
-export const toApiBaseUrl = (baseURL: string = '/', path: string = '') => path.startsWith('/') && baseURL === '/'
+export const toApiBaseUrl = (baseURL: string = '', path: string = '') => path.startsWith('/') && baseURL === '/'
   ? path
   : `${apiConfig.baseURL}${baseURL}`;
 
