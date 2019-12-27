@@ -22,7 +22,7 @@ www.kajtetsushi.dev
   - [1. Install all system required tools](#1-install-all-system-required-tools)
   - [2. Get a copy of the code](#2-get-a-copy-of-the-code)
   - [3. Install the project dependencies](#3-install-the-project-dependencies)
-  - [4. _(optional)_ Change the running port](#4-optional-change-the-running-port)
+  - [4. (optional) Change the running port](#4-optional-change-the-running-port)
 - [Running Locally](#running-locally)
   - [Development Mode](#development-mode)
   - [Production Mode](#production-mode)
@@ -61,11 +61,11 @@ See [System Requirements](#system-requirements) for what you need to get. For Ng
 
 ### 2. Get a copy of the code
 
-> **Note**: You can also download directly from the BitBucket source. See [Downloads](https://bitbucket.org/andrewsantarin/expenses-tracker-app/downloads/) > "Download repository". Git is not needed.
+> **Note**: You can also download directly from the BitBucket source. See [Downloads](https://bitbucket.org/andrewsantarin/header-rewrite-example/downloads/) > "Download repository". Git is not needed.
 
 ```sh
-git clone https://github.com/andrewsantarin/staticify-test.git
-cd staticify-test
+git clone https://github.com/andrewsantarin/header-rewrite-example.git
+cd header-rewrite-example
 ```
 
 ### 3. Install the project dependencies
